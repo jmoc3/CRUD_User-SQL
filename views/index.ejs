@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Prueba</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="app">
+
+      <div class="parent">
+        
+        <div class="sendParent">
+          <h2 class="title">Insertar nuevo usuario</h2>
+          <div class="sendBox">
+          <input type="text" class="name" name="name" class="usuario" placeholder="Nombre">
+          <input type="text" class="email" name="email" class="usuario" placeholder="Email">
+          <input type="number" class="age" name="age" class="usuario" placeholder="Edad">
+          <button class="send" id="sendButton">Enviar</button>
+        </div>
+      </div>
+      
+      <div class="exhibition">
+        <table>
+          <thead>
+            <td>id</td>
+            <td>nombre</td>
+            <td>email</td>
+            <td>edad</td>
+          </thead>
+          <tbody>
+            <% users.forEach(function(e) { %>
+            <tr>
+              <td>
+                <%= e.id %>
+            </td>
+              <td>
+                <%= e.nombre %>
+              </td>
+              <td>
+                <%= e.email %>
+              </td>
+              <td>
+                <%= e.edad %>
+              </td>
+              <td>
+                <button class="actionButtons update" id="<%= e.id %>">Actualizar</button>
+                <button class="actionButtons delete" id="<%= e.id %>">Eliminar</button>
+              </td>
+            </tr>
+            <% }); %> 
+          </tbody>
+          <tbody>
+            
+          </tbody>
+        </table>
+        
+      </div>
+    </div>
+  </div>
+  </body>
+  <script src="/javascripts/index.js"></script>
+  </html>
