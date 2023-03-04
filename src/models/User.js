@@ -3,18 +3,18 @@ import { connection } from "../../db/db.js";
 
 export class User{
 
-    #nombre;
+    #name;
     #email;
-    #edad;
+    #age;
 
     constructor(body){
-        this.#nombre = body.nombre;
+        this.#name = body.name;
         this.#email = body.email;
-        this.#edad = body.edad;
+        this.#age = body.age;
     }
 
     async save(){
-        const response = await connection.query("INSERT INTO user_account(nombre,email,edad) VALUES(?,?,?)",[this.#nombre, this.#email,this.#edad])
+        const response = await connection.query("INSERT INTO user_account(name,email,age) VALUES(?,?,?)",[this.#name, this.#email,this.#age])
         return response[0]
     }
 
@@ -28,9 +28,13 @@ export class User{
         return response[0]
     }
 
+    static async findEmail(email){
+        const response = await connection.query("SELECT * FROM user_account WHERE email = (?)",[email])
+        return response[0]
+    }
+
     static async update(body, id){
-        const response = await connection.query("UPDATE user_account SET nombre = (?), email = (?), edad = (?) WHERE id = (?)",[body.nombre, body.email,body.edad, id])
-        console.log(response[0])
+        const response = await connection.query("UPDATE user_account SET name = (?), email = (?), age = (?) WHERE id = (?)",[body.name, body.email,body.age, id])
         return response[0]
     }
 

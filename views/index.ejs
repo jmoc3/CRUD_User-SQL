@@ -8,7 +8,6 @@
     <div class="app">
 
       <div class="parent">
-        
         <div class="sendParent">
           <h2 class="title">Insertar nuevo usuario</h2>
           <div class="sendBox">
@@ -20,41 +19,39 @@
       </div>
       
       <div class="exhibition">
-        <table>
+        <table class="users">
           <thead>
             <td>id</td>
             <td>nombre</td>
             <td>email</td>
             <td>edad</td>
           </thead>
-          <tbody>
+          <tbody class="body">
             <% users.forEach(function(e) { %>
-            <tr>
+            <tr id="<%= e.id %>">
               <td>
                 <%= e.id %>
             </td>
               <td>
-                <%= e.nombre %>
+                <%= e.name %>
               </td>
               <td>
                 <%= e.email %>
               </td>
               <td>
-                <%= e.edad %>
+                <%= e.age %>
               </td>
               <td>
-                <button class="actionButtons update" id="<%= e.id %>">Actualizar</button>
-                <button class="actionButtons delete" id="<%= e.id %>">Eliminar</button>
+                <button class="actionButtons update">Actualizar</button>
+                <button class="actionButtons delete">Eliminar</button>
               </td>
             </tr>
             <% }); %> 
           </tbody>
-          <tbody>
-            
-          </tbody>
         </table>
-        
+        <div class="anything">Ningun usuario en la base de datos</div>
       </div>
+
     </div>
   </div>
   </body>

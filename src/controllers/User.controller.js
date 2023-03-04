@@ -7,9 +7,9 @@ export class UserController{
 
             const user = new User(req.body);
             const created = await user.save()
-            console.log(created)
+
             res.status(200).json({
-                "response":created.affectedRows
+                "response":created
             })
 
         } catch (error) {
@@ -23,17 +23,18 @@ export class UserController{
         try {
 
             const allUsers = await User.all()
-            res.render('index',{users:allUsers})
+            res.status(200).json({
+                "users": allUsers
+            })
             
         } catch (error) {
-            console.log(error)
             res.status(500).json({
                 "error":error.message
             })   
         }
     }
 
-    static async showOne(req,res){
+    static async findOne(req,res){
         try {
             
             const user = await User.findOne(req.params.id)
@@ -46,9 +47,24 @@ export class UserController{
         }
     }
 
+    static async findOneForEmail(req,res){
+        try {
+
+            const user = await User.findEmail(req.params.email)
+            res.status(200).json({
+                "user":user[0]
+            })
+
+        } catch (error) {
+            res.status(500).json({
+                "error":error.message
+            })   
+        }
+    }
+
     static async updateUser(req,res){
         try {
-            console.log(req.body)
+            
             const userUpdated = await User.update(req.body,req.params.id)
             res.status(200).json({
                 "response":userUpdated.affectedRows
